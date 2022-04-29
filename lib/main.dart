@@ -7,7 +7,8 @@ import 'package:movies_task/backend/blocs/details_bloc/details_cubit.dart';
 import 'package:movies_task/backend/blocs/movies_bloc/movies_cubit.dart';
 import 'package:movies_task/backend/repository/movies_repo.dart';
 import 'package:movies_task/frontend/screens/popular_movies_screen.dart';
-import 'package:movies_task/frontend/screens/splash_screen.dart';
+import 'package:movies_task/helpers/my_constants.dart';
+import 'package:movies_task/helpers/my_routes.dart';
 import 'backend/services/remote_config_services.dart';
 
 RemoteConfigService? remoteConfigService;
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        navigatorKey: MyConstants.navigatorKey,
+        initialRoute: MyConstants.popularRoute,
+        onGenerateRoute: MyRouter.generateRoute,
         theme: ThemeData(
          primaryColor: Colors.white70,
         ),

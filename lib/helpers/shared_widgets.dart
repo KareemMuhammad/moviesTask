@@ -24,7 +24,7 @@ Widget loadMovieShimmer(){
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         color: MyConstants.white,
         elevation: 4,
-        child: const MyShimmer.rectangular(baseColor: MyConstants.white,)
+        child: const MyShimmer.rectangular(baseColor: Colors.grey,)
     ),
   );
 }

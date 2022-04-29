@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_task/helpers/my_constants.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MyShimmer extends StatelessWidget {
@@ -19,11 +20,11 @@ class MyShimmer extends StatelessWidget {
           width: width,
           height: height,
           decoration: ShapeDecoration(
-            color: Colors.white,
+            color: MyConstants.white,
             shape: shapeBorder!,
           ),
         ),
         baseColor: baseColor!,
-        highlightColor: Colors.grey[200]!);
+        highlightColor: MyConstants.white);
   }
 }

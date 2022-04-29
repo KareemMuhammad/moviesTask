@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_task/frontend/screens/details_screen.dart';
 import 'package:movies_task/helpers/my_constants.dart';
 import 'package:movies_task/helpers/size_config.dart';
 import '../../backend/model/movie_model.dart';
@@ -16,7 +15,10 @@ class MovieCardWidget extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=> DetailsScreen(movie: movie,)));
+                  Navigator.pushNamed(context,MyConstants.detailsRoute,
+                      arguments: Movie(
+                        movie!.id,movie!.title,movie!.overview, movie!.poster,
+                    ));
                 },
                 child: Card(
                   elevation: 4,

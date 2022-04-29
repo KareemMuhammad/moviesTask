@@ -16,41 +16,60 @@ class DetailsScreen extends StatefulWidget {
 class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.white70,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: SizeConfig.screenHeight! * 0.3,
+            toolbarHeight: SizeConfig.screenHeight! * 0.07,
+            expandedHeight: SizeConfig.screenHeight! * 0.4,
             pinned: true,
             stretch: true,
             backgroundColor: MyConstants.white,
+            leading: CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.white70,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back,color: MyConstants.black,),
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+              ),
+            ),
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
-              title: Text(
-                widget.movie!.title,
-                style: TextStyle(color: MyConstants.white,fontSize: SizeConfig.blockSizeVertical! * 2.8,
-                    shadows: const[
-                  Shadow(
-                    offset: Offset(0.0, 5.0),
-                    blurRadius: 3.0,
-                    color: Color.fromARGB(100, 0, 0, 0),
-                  ),
-                ]),
-                textAlign: TextAlign.center,
-              ),
+              title: const SizedBox(),
               background: Hero(
                 tag: widget.movie!.id,
                 child: CachedNetworkImage(
                   imageUrl: "${MyConstants.BASE_IMAGE_URL}${widget.movie!.poster}",
-                  height: SizeConfig.screenHeight! * 0.3,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
           ),
           SliverList(delegate: SliverChildListDelegate(
             [
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.4),
+                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20))
+                ),
+                child: Text(
+                  widget.movie!.title,
+                  style: TextStyle(color: MyConstants.black,fontSize: SizeConfig.blockSizeVertical! * 3,
+                      shadows: const[
+                        Shadow(
+                          offset: Offset(0.0, 2.0),
+                          color: Color.fromARGB(100, 0, 0, 0),
+                        ),
+                      ]),
+                  textAlign: TextAlign.center,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: footer(widget.movie!.overview),

@@ -8,4 +8,8 @@ class MyConstants{
   static const Color white = Colors.white;
   static const Color black = Colors.black;
   static const String BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
+  static const String popularRoute = '/';
+  static const String detailsRoute = '/details';
+  static const String deepDetailsRoute = '/deep';
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey(debugLabel: "Main Navigator");
 }
