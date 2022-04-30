@@ -5,7 +5,7 @@ import 'package:movies_task/helpers/my_constants.dart';
 
 class DeepLinkService{
   void handleDynamicLinks() async {
-    ///To bring INTO FOREGROUND FROM DYNAMIC LINK.
+
     FirebaseDynamicLinks.instance.onLink.listen(
        (PendingDynamicLinkData dynamicLinkData) async {
         await _handleDeepLink(dynamicLinkData);
@@ -18,10 +18,11 @@ class DeepLinkService{
 
     final PendingDynamicLinkData? data =
     await FirebaseDynamicLinks.instance.getInitialLink();
-    _handleDeepLink(data!);
+    if(data != null) {
+      _handleDeepLink(data);
+    }
   }
 
-  // bool _deeplink = true;
   _handleDeepLink(PendingDynamicLinkData data) async {
 
     final Uri? deeplink = data.link;

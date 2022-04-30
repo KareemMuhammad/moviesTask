@@ -28,7 +28,7 @@ class MoviesRepository{
       log(response.headers.toString());
       log(response.body);
     }
-    Movie movie = jsonDecode(response.body);
+    Movie movie = Movie.fromMap(jsonDecode(response.body));
     if(response.statusCode == 200){
       return movie;
     }else{

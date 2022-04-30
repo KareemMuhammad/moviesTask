@@ -1,11 +1,12 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 const String _KEY = "fcmKey";
 
 class RemoteConfigService {
-  final RemoteConfig? _remoteConfig;
-  RemoteConfigService({RemoteConfig? remoteConfig}) : _remoteConfig = remoteConfig;
+  final FirebaseRemoteConfig? _remoteConfig;
+  RemoteConfigService({FirebaseRemoteConfig? remoteConfig}) : _remoteConfig = remoteConfig;
 
   final defaults = <String, dynamic>{
     _KEY: 1,
@@ -14,7 +15,7 @@ class RemoteConfigService {
   static RemoteConfigService? _instance;
   static Future<RemoteConfigService> getInstance() async {
     _instance ??= RemoteConfigService(
-        remoteConfig: RemoteConfig.instance,
+        remoteConfig: FirebaseRemoteConfig.instance,
       );
     return _instance!;
   }
@@ -24,9 +25,9 @@ class RemoteConfigService {
       await _remoteConfig!.setDefaults(defaults);
       await _fetchAndActivate();
     } on PlatformException  catch (e) {
-      print("Remote Config fetch throttled: $e");
+      debugPrint(e.toString());
     } catch (e) {
-      print("Unable to fetch remote config. Default value will be used");
+      debugPrint(e.toString());
     }
   }
 

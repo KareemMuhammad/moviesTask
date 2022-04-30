@@ -20,11 +20,8 @@ class PushNotificationServices{
         );
 
         if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-          print('User granted permission');
         } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
-          print('User granted provisional permission');
         } else {
-          print('User declined or has not accepted permission');
         }
       }
           final String? token = await FirebaseMessaging.instance.getToken();
@@ -37,13 +34,11 @@ class PushNotificationServices{
       });
 
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        print('On message listen!');
         RemoteNotification notification = message.notification!;
 
       });
 
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-        print('A new onMessageOpenedApp event was published!');
 
       });
   }
